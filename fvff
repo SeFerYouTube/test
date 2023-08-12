@@ -1,0 +1,193 @@
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/shlexware/Orion/main/source")))()
+
+local Window = OrionLib:MakeWindow({Name = "Lucky Blocks", HidePremium = false, SaveConfig = true, ConfigFolder = "LuckyBlocks by SeFer"})
+
+local AutoFarm = true
+
+local DisableForceField = true
+
+
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+function testesr()
+	while AutoFarm == true do
+		game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+		wait(.000000000000000000000000000000000000000000000000000000000000000001)
+		OrionLib:MakeNotification({
+		Name = "Lucky Blocks by SeFer",
+		Content = "Successfully",
+		Image = "rbxassetid://4483345998",
+		Time = 5
+	})
+	end
+end
+
+
+
+function DisableFF()
+	if DisableForceField == true then
+		game.Workspace.Terrain4.ForceFields.Mesh.TextureId = "0"
+		game.Workspace.Terrain4.ForceFields.Mesh.MeshId = "0"
+	else
+		game.Workspace.Terrain4.ForceFields.Mesh.TextureId = "90782359"
+		game.Workspace.Terrain4.ForceFields.Mesh.MeshId = "90782182"
+end
+end
+
+
+local Tab = Window:MakeTab({
+	Name = "Home/Info",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+
+Tab:AddParagraph("Void Block","Информация про Void Block! Как только его открыли вы должны подождать 1200 Секунд до слеующего открытия")
+
+local Tab2 = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tab3 = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tab5 = Window:MakeTab({
+	Name = "Blocks",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Tab4 = Window:MakeTab({
+	Name = "Visuals",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section6 = Tab4:AddSection({
+	Name = "World"
+})
+
+Section6:AddToggle({
+	Name = "Disable Forcefield",
+	Default = false,
+	Callback = function(Value)
+      		DisableForceField = Value
+			DisableFF()
+  	end    
+})
+
+Section6:AddSlider({
+	Name = "FOV (Field Of View) : Default Value - 70",
+	Min = 30,
+	Max = 130,
+	Default = 70,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "FOV",
+	Callback = function(Value)
+		game.Workspace.Camera.FieldOfView = Value
+	end    
+})
+
+
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+local Section = Tab2:AddSection({
+	Name = "Main"
+})
+
+local Section5 = Tab3:AddSection({
+	Name = "Blocks"
+})
+
+Tab3:AddButton({
+	Name = "TP to Void Block",
+	Callback = function()
+			game:GetService("Players").LocalPlayer.Character.Humanoid.Torso.CFrame = CFrame.new(-1041.23193, 205.466263, 90.9467316)
+  	end    
+})
+
+Tab3:AddButton({
+	Name = "TP to Mountains",
+	Callback = function()
+			game:GetService("Players").LocalPlayer.Character.Humanoid.Torso.CFrame = CFrame.new(-1121.62952, 246.474243, -399.414886)
+  	end    
+})
+
+Section:AddToggle({
+	Name = "Give Items (while on)",
+	Default = false,
+	Callback = function(Value)
+      		AutoFarm = Value
+			testesr()
+  	end    
+})
+
+Section:AddSlider({
+	Name = "WalkSpeed : Default Value - 16",
+	Min = 1,
+	Max = 250,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "WS",
+	Callback = function(Value)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+
+
+
+local Section11 = Tab5:AddSection({
+	Name = "Rainbow Block (on Center)"
+})
+
+local Section22 = Tab5:AddSection({
+	Name = "Rainbow Block 2 (on Center)"
+})
+
+local Section33 = Tab5:AddSection({
+	Name = "Galaxy Block (on Center)"
+})
+
+local Section44 = Tab5:AddSection({
+	Name = "Galaxy Block 2 (on Center)"
+})
+
+
+local ss = Section11:AddLabel("fwfw")
+local ss2 = Section22:AddLabel("fwfw")
+local ss3 = Section33:AddLabel("fwfw")
+local ss4 = Section44:AddLabel("fwfw")
+
+OrionLib:Init()
+	
+while wait(1) do
+	ss:Set(game.Workspace.CenterBlocks.Givers.BlockGiverRainbow1.GUI.SurfaceGui.Frame.Time1.Text)
+	ss2:Set(game.Workspace.CenterBlocks.Givers.BlockGiverRainbow2.GUI.SurfaceGui.Frame.Time1.Text)
+	ss3:Set(game.Workspace.CenterBlocks.Givers.BlockGiverGalaxy1.GUI.SurfaceGui.Frame.Time1.Text)
+	ss4:Set(game.Workspace.CenterBlocks.Givers.BlockGiverGalaxy2.GUI.SurfaceGui.Frame.Time1.Text)
+end
